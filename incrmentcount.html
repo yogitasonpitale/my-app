@@ -1,0 +1,31 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div ></div>
+
+<script type='text/babel'>
+   
+    class  App extends React.Component{
+        constructor(){
+            super();
+            this.state={
+                cnt:0
+            }
+        }
+        fnClick=()=>{
+            debugger;
+            this.setState=({
+                cnt:this.state.cnt+1
+            })
+
+        }
+        render(){
+           return <div><h1>{this.state.cnt}</h1><button onClick={this.fnClick} >Click</button></div>
+        }
+    }
+
+
+    ReactDOM.render(<App />,document.getElementsByTagName('div')[0]);
+
+</script>
