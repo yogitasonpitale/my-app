@@ -1,9 +1,15 @@
 import "./Menu.css";
-import React from "react";
+import React ,{lazy,Suspense} from "react";
 import {HashRouter,Route,Switch,Redirect} from 'react-router-dom';
-import Home from '../Home/index';
+
+/*import Home from '../Home/index';
 import About from '../About/index';
 import Contact from '../Contact/index';
+import { lazy } from "react";*/
+
+const Home=lazy(()=>import('../Home/index'));
+const About=lazy(()=>import('../About/index'));
+const Contact=lazy(()=>import('../Contact/index'));
 
 function template() {
   const {menuItem,isMobileView,isShowMobileMenu}=this.state;
@@ -16,18 +22,18 @@ function template() {
                 
            </ul>
             {isMobileView && <input onClick={this.fnMenuBtnClick.bind(this)} className="mobile-menu-btn" type='button' value="menu" /> }
+           <Suspense fallback="Loading..........">
            <HashRouter>
              <Switch>
-           <Route path="/" exact  component={Home} />
-             <Route path="/home" component={Home} />
-             <Route path="/about" component={About} /> 
-             <Route path="/contact" component={Contact} />
-              <Redirect to="/home" />
+                 <Route path="/" exact  component={Home} />
+                  <Route path="/home" component={Home} />
+                  <Route path="/about" component={About} /> 
+                  <Route path="/contact" component={Contact} />
+                  <Redirect to="/home" />
              </Switch>
             </HashRouter>
-                    
-           
-           </div>
+            </Suspense>           
+      </div>
            );
   
 };
